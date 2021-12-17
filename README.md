@@ -31,3 +31,8 @@ This is a simple & free password manager made using python that you can use to s
 This whole projet was created by Imira Randeniya. Development Process Is Currently Ongoing.
 <br>
 You can find the GUI Version Of ManageMyPasswords [here.](https://github.com/Imira-S-R/PasswordManager)
+
+## License
+Copyright (c) Imira Randeniya. All rights reserved.
+
+Licensed under the [MIT License](./LICENSE).
