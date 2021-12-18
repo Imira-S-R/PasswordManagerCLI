@@ -1,0 +1,5 @@
+termcolor
+colorama
+encryption
+psycopg2
+prompt_toolkit
