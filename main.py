@@ -46,8 +46,10 @@ def authenticate ():
 
     print('')
     password = getpass.getpass(prompt='Enter Master Password: ')
+    key = createKey(password)
+
    
-    if master_pswd[0][1] == password:
+    if decryptString(key, master_pswd[0][1]) == password:
         clear()
         print('The Master Password Is Correct. Welcome back')
     else:
