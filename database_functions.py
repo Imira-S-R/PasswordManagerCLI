@@ -221,6 +221,37 @@ def get_specific_records(key, website_name):
     cur.close()
     conn.close()
 
+def get_email_connected_apps (key, email):
+    # SQL to get records from Postgres
+    s = f"""SELECT * FROM passwords_information_table;"""
+    # Error trapping
+    conn = None
+    list_passwords = []
+    try:
+        params = config()
+        conn = psycopg2.connect(**params)
+        cur = conn.cursor()
+        # Execute the SQL
+        cur.execute(s)
+        # Retrieve records from Postgres into a Python List
+        list_passwords = cur.fetchall()
+        for password in list_passwords:
+            if decryptString(key, password[2]) == email:
+                print('')
+                cprint('--------------RESULT--------------', "red")
+                cprint(f'Website:  {decryptString(key, password[1])}', "white")
+                cprint(f'Username: {decryptString(key, password[2])}', "red")
+                cprint(f'Password: {decryptString(key, password[3])}', "white")
+                cprint('----------------------------------', "red")
+                print('')
+    except psycopg2.Error as e:
+        t_message = "Database error: "
+        print(t_message)
+    
+    # Close the database cursor and connection
+    cur.close()
+    conn.close()
+
 def get_specific_info (id) :
     # SQL to get records from Postgres
     s = f"""SELECT * FROM passwords_information_table WHERE password_id='{id}';"""

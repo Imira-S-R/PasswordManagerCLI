@@ -5,6 +5,7 @@ import colorama
 import subprocess
 import getpass
 from encryption import *
+import argparse
 
 
 colorama.init()
@@ -15,12 +16,29 @@ menu = '''
 3. Delete Password
 4. View Passwords
 5. Find a password for a site or app
-6. Exit
+6. Find the websites/apps connected to an e-mail/username
+7. Exit
 '''
 
 clear = lambda: os.system('cls')
 
+parser = argparse.ArgumentParser()
 
+parser.add_argument('--name', '-n', type=str, help="website/app name", default='no')
+parser.add_argument('--username', '-u', type=str, help="username", default='no')
+parser.add_argument('--password', '-p', type=str, help="password", default='no')
+args = parser.parse_args()
+
+if args.name != 'no' and args.username != 'no' and args.password != 'no':
+    key = askPassphrase('Enter master password: ')
+
+    website_name = encryptString(key, args.name)
+    username = encryptString(key, args.username)
+    password = encryptString(key, args.password)
+
+    insert_password(website_name=website_name, username=username, password=password)
+    cprint('Password Inserted.', "green")
+    exit()
 
 
 def authenticate ():
@@ -44,11 +62,14 @@ def search (website_name):
 
 def addPassword():
 
-    website_name = input('Enter website name: ')
+    print('Enter website name: ')
+    website_name = input('> ')
     print('')
-    username = input('Enter username: ')
+    print('Enter username: ')
+    username = input('> ')
     print('')
-    password = input('Enter password: ')
+    print('Enter password: ')
+    password = input('> ')
     print('')
 
     key = askPassphrase('Enter master password: ')
@@ -59,6 +80,7 @@ def addPassword():
     password = encryptString(key, password)
 
     insert_password(website_name=website_name, username=username, password=password)
+    print('')
     cprint('Password Inserted.', "green")
 
     # clear()
@@ -82,11 +104,14 @@ def editPassword():
     cprint('Enter SAB for the same entry as before.', "red")
     print('')
 
-    website = input('Enter new website: ')
+    print('Enter website name: ')
+    website = input('> ')
     print('')
-    username = input('Enter new username: ')
+    print(f'Enter username for {website}: ')
+    username = input('> ')
     print('')
-    password = input('Enter new password: ')
+    print(f'Enter password: for {website}')
+    password = input('> ')
     print('')
 
     if website == 'SAB':
@@ -162,6 +187,14 @@ def main ():
         get_specific_records(key, website_name)
         main()
     elif option == 6:
+        clear()
+        print('Enter e-mail/username you want to find connected apps for: ')
+        email = input('> ')
+        print('')
+        key = askPassphrase('Enter master password: ')
+        get_email_connected_apps(key, email)
+        main()
+    elif option == 7:
         cprint('Program Finished', "red")
         exit()
     else:
