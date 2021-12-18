@@ -26,6 +26,12 @@ After that run main.py
 python main.py
 
 ```
+Create a table in postgresql
+```js
+
+CREATE DATABASE passwords;
+
+```
 ## About
 This is a simple & free password manager made using python that you can use to store your passwords securely. It uses fernet to encrypt the data entered.
 This whole projet was created by Imira Randeniya. Development Process Is Currently Ongoing.
