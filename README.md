@@ -14,6 +14,12 @@ Change The Direcory
 cd PasswordManagerCLI
 
 ```
+Install Python Packages
+```js
+
+pip install -r requirements.txt
+
+```
 Run setup.py for first time users
 ```js
 
