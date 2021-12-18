@@ -107,10 +107,10 @@ def editPassword():
     print('Enter website name: ')
     website = input('> ')
     print('')
-    print(f'Enter username for : ')
+    print(f'Enter username : ')
     username = input('> ')
     print('')
-    print(f'Enter password: for: ')
+    print(f'Enter password : ')
     password = input('> ')
     print('')
 
