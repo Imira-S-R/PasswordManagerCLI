@@ -211,8 +211,6 @@ def get_specific_records(key, website_name):
                 print('')
                 copy2clip(decryptString(key, password[3]))
                 cprint('(The Password Has Been Copied To Your Clipboard)', "white")
-            else:
-                cprint(f'No Password Found For {website_name}')
     except psycopg2.Error as e:
         t_message = "Database error: "
         print(t_message)
