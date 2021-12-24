@@ -45,6 +45,12 @@ To Add A Password
 python main.py -n "name" -u "username" -p "password"
 
 ```
+List The Passwords
+```js
+
+python main.py -l
+
+```
 ## About
 This is a simple & free password manager made using python that you can use to store your passwords securely. It uses fernet to encrypt the data entered.
 This whole projet was created by Imira Randeniya. Development Process Is Currently Ongoing.
