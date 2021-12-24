@@ -27,6 +27,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--name', '-n', type=str, help="website/app name", default='no')
 parser.add_argument('--username', '-u', type=str, help="username", default='no')
 parser.add_argument('--password', '-p', type=str, help="password", default='no')
+parser.add_argument("-l", "--list", action="store_true", help="List all entries in password vault")
 args = parser.parse_args()
 
 if args.name != 'no' and args.username != 'no' and args.password != 'no':
@@ -38,6 +39,24 @@ if args.name != 'no' and args.username != 'no' and args.password != 'no':
 
     insert_password(website_name=website_name, username=username, password=password)
     cprint('Password Inserted.', "green")
+    exit()
+
+if args.list:
+    passwords = get_records()
+
+    key = askPassphrase('Enter master password: ')
+    
+    clear()
+
+    for password in passwords:
+        print('\n')
+        cprint('-' * 20, "red")
+        print('ID: ', password[0])
+        print('Website Name: ', decryptString(key, password[1]))
+        print('Username: ', decryptString(key, password[2]))
+        print('Password: ', decryptString(key, password[3]))
+        cprint('-' * 20, "red")
+
     exit()
 
 

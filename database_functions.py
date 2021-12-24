@@ -205,7 +205,7 @@ def get_specific_records(key, website_name):
         list_passwords = cur.fetchall()
 
         for password in list_passwords:
-            if decryptString(key, password[1]) == website_name:
+            if decryptString(key, password[1]).lower().__contains__(website_name):
                 print('')
                 cprint(f'{decryptString(key, password[3])}', "green")
                 print('')
